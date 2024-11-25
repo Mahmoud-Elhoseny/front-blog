@@ -18,6 +18,7 @@ const DateSelector = ({ date, setDate }) => {
           ? moment(date).format('Do MMM YYYY')
           : moment().format('Do MMM YYYY')}
       </button>
+      خخخخ
       {openDatePicker && (
         <div className="overflow-y-scroll p-5 bg-sky-50/80 rounded-lg relative pt-9">
           <button

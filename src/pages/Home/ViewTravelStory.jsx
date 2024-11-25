@@ -36,6 +36,7 @@ const ViewTravelStory = ({
           <div className="flex items-center justify-between gap-3">
             <span className="text-xs text-slate-500">
               {storyInfo && storyInfo.visitedDate}
+              سلسل
             </span>
             <div className="inline-flex items-center gap-2 text-[13px] text-cyan-600 bg-cyan-200/40 rounded px-2 py-1">
               <GrMapLocation className="text-sm" />
