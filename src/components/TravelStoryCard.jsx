@@ -37,6 +37,7 @@ const TravelStoryCard = ({ item, onClick, onFavClick }) => {
           <div className="flex-1">
             <h6 className="text-sm font-medium">{title}</h6>
             <span className="text-xs text-slate-500">{visitedDate}</span>
+            <span className="text-xs text-slate-500">ييشيش</span>
           </div>
         </div>
         <p className="text-sm text-slate-500 mt-2">
