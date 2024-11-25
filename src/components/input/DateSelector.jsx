@@ -14,11 +14,8 @@ const DateSelector = ({ date, setDate }) => {
         }}
       >
         <MdOutlineDateRange className="text-lg" />
-        {date
-          ? moment(date).format('Do MMM YYYY')
-          : moment().format('Do MMM YYYY')}
+        {date}
       </button>
-      خخخخ
       {openDatePicker && (
         <div className="overflow-y-scroll p-5 bg-sky-50/80 rounded-lg relative pt-9">
           <button
