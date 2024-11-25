@@ -7,9 +7,7 @@ import {
   Routes,
   Route,
   Navigate,
-  useNavigate
 } from 'react-router-dom';
-import axiosInstance from './utils/axiosInstance';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
@@ -23,13 +21,13 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Root />} />
-        <Route 
-          path="/dashboard" 
+        <Route
+          path="/dashboard"
           element={
             <ProtectedRoute>
               <Home />
             </ProtectedRoute>
-          } 
+          }
         />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />

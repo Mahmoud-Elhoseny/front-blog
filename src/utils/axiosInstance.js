@@ -1,9 +1,8 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://back-blog-1.onrender.com'
+  baseURL: 'https://back-blog-2-gdeh.onrender.com',
 });
-
 axiosInstance.interceptors.request.use((config) => {
   if (config.url?.startsWith('http://')) {
     config.url = config.url.replace('http://', 'https://');
@@ -12,7 +11,7 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 axiosInstance.interceptors.response.use(
-  response => {
+  (response) => {
     if (response.data && typeof response.data === 'object') {
       const convertUrlsToHttps = (obj) => {
         for (let key in obj) {
@@ -27,7 +26,7 @@ axiosInstance.interceptors.response.use(
     }
     return response;
   },
-  error => {
+  (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       window.location.href = '/login';
