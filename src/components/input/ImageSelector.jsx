@@ -36,6 +36,7 @@ const ImageSelector = ({ image, setImage, handleDeleteImg }) => {
       <input
         type="file"
         accept="image/*"
+        capture="environment"
         ref={inputRef}
         onChange={handleImageChange}
         className="hidden"
