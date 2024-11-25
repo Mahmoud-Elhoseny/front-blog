@@ -2,35 +2,22 @@ import axios from 'axios';
 
 const axiosInstance = axios.create({
   baseURL: 'https://back-blog-2-gdeh.onrender.com',
-});
-axiosInstance.interceptors.request.use((config) => {
-  if (config.url?.startsWith('http://')) {
-    config.url = config.url.replace('http://', 'https://');
-  }
-  return config;
+  timeout: 5000,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true,
 });
 
-axiosInstance.interceptors.response.use(
-  (response) => {
-    if (response.data && typeof response.data === 'object') {
-      const convertUrlsToHttps = (obj) => {
-        for (let key in obj) {
-          if (typeof obj[key] === 'string' && obj[key].startsWith('http://')) {
-            obj[key] = obj[key].replace('http://', 'https://');
-          } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-            convertUrlsToHttps(obj[key]);
-          }
-        }
-      };
-      convertUrlsToHttps(response.data);
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-    return response;
+    return config;
   },
   (error) => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
-    }
     return Promise.reject(error);
   }
 );
