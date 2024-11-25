@@ -21,7 +21,7 @@ const DateSelector = ({ date, setDate }) => {
         }}
       >
         <MdOutlineDateRange className="text-lg" />
-        {formatDate(date)}
+        {date}
       </button>
       {openDatePicker && (
         <div className="overflow-y-scroll p-5 bg-sky-50/80 rounded-lg relative pt-9">
