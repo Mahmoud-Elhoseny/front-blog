@@ -9,22 +9,9 @@ import {
   Navigate,
   useNavigate
 } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from './utils/axiosInstance';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
-// Add error handling for axios
-axios.defaults.baseURL = 'https://back-blog-1.onrender.com';
-axios.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
-    }
-    return Promise.reject(error);
-  }
-);
 
 const ProtectedRoute = ({ children }) => {
   const isAuthenticated = !!localStorage.getItem('token');
