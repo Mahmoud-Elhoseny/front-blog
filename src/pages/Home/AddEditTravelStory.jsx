@@ -14,15 +14,15 @@ const AddEditTravelStory = ({
   onClose,
   getAllTravelStories,
 }) => {
-
   const [title, setTitle] = useState(storyInfo?.title || '');
   const [image, setImage] = useState(storyInfo?.image || null);
   const [story, setStory] = useState(storyInfo?.story || '');
-  const [visitedDate, setVisitedDate] = useState(storyInfo?.visitedDate || null);
+  const [visitedDate, setVisitedDate] = useState(
+    storyInfo?.visitedDate || null
+  );
   const [visitedLocation, setVisitedLocation] = useState(
     storyInfo?.visitedLocation || []
   );
-
   const addTravelStory = async () => {
     try {
       let imageUrl = '';
@@ -70,8 +70,8 @@ const AddEditTravelStory = ({
           image: imageUrl,
           visitedLocation,
           visitedDate: visitedDate
-            ? moment(visitedDate).valueOf()
-            : moment().valueOf(),
+            ? moment(visitedDate).format('Do MMM YYYY')
+            : moment().format('Do MMM YYYY'),
         }
       );
       if (response.data) {
