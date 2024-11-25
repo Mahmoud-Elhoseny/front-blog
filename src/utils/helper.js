@@ -3,9 +3,9 @@ export const validateEmail = (email) => {
   return regex.test(email);
 };
 
-export const getInitials = (fullName) => {
-  if (!fullName) return '';
-  const names = fullName.split(' ');
+export const getInitials = (username) => {
+  if (!username) return '';
+  const names = username.split(' ');
   let initials = '';
   for (let i = 0; i < names.length; i++) {
     initials += names[i][0];

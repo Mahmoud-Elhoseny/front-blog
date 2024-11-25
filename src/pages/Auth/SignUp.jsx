@@ -30,7 +30,7 @@ const SignUp = () => {
     try {
       const response = await axiosInstance.post('/auth/register', {
         email,
-        fullName: name,
+        username: name,
         password,
       });
       if (response.data && response.data.token) {
