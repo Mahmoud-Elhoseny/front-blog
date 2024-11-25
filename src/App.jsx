@@ -7,20 +7,47 @@ import {
   Routes,
   Route,
   Navigate,
+  useNavigate
 } from 'react-router-dom';
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
+// Add error handling for axios
+axios.defaults.baseURL = 'https://back-blog-1.onrender.com';
+axios.interceptors.response.use(
+  response => response,
+  error => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = !!localStorage.getItem('token');
+  return isAuthenticated ? children : <Navigate to="/login" />;
+};
+
 const App = () => {
-  axios.defaults.baseURL = 'https://back-blog-1.onrender.com';
   return (
     <Router>
       <Routes>
-        <Route path="/" exact element={<Root />} />
-        <Route path="/dashboard" exact element={<Home />} />
-        <Route path="/login" exact element={<Login />} />
-        <Route path="/signUp" exact element={<SignUp />} />
+        <Route path="/" element={<Root />} />
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          } 
+        />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signUp" element={<SignUp />} />
+        {/* Add a catch-all route */}
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <ToastContainer
         position="top-right"
