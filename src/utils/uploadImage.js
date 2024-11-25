@@ -1,26 +1,9 @@
 import axiosInstance from "./axiosInstance";
 
-const ALLOWED_IMAGE_TYPES = [
-  'image/jpeg',
-  'image/png',
-  'image/gif',
-  'image/webp',
-  'image/svg+xml',
-  'image/bmp',
-  'image/tiff'
-];
-
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
-
 const uploadImage = async (imageFile) => {
-  // Validate file type
-  if (!ALLOWED_IMAGE_TYPES.includes(imageFile.type)) {
-    throw new Error('Invalid file type. Please upload an image file (JPEG, PNG, GIF, WebP, SVG, BMP, or TIFF)');
-  }
-
-  // Validate file size
-  if (imageFile.size > MAX_FILE_SIZE) {
-    throw new Error('File size too large. Maximum size is 5MB');
+  // Only verify that it's some type of image file
+  if (!imageFile.type.startsWith('image/')) {
+    throw new Error('Please upload an image file');
   }
 
   const formData = new FormData();
