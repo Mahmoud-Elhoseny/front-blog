@@ -4,8 +4,9 @@ const axiosInstance = axios.create({
   baseURL: 'https://back-blog-1.onrender.com',
   timeout: 5000,
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'application/json'
   },
+  withCredentials: true
 });
 
 axiosInstance.interceptors.request.use(
