@@ -6,11 +6,10 @@ import { MdOutlineDateRange, MdClose } from 'react-icons/md';
 const DateSelector = ({ date, setDate }) => {
   const [openDatePicker, setOpenDatePicker] = useState(false);
 
-  // Format the date for display
-  const formatDate = (date) => {
-    if (!date) return 'Select date';
-    return moment(date).format('MMM DD, YYYY');
-  };
+  // Format the date for display if it's a Date object
+  const displayDate = typeof date === 'object' && date instanceof Date 
+    ? moment(date).format('MMM DD, YYYY')
+    : date || 'Select date';
 
   return (
     <div>
@@ -21,7 +20,7 @@ const DateSelector = ({ date, setDate }) => {
         }}
       >
         <MdOutlineDateRange className="text-lg" />
-        {date}
+        {displayDate}
       </button>
       {openDatePicker && (
         <div className="overflow-y-scroll p-5 bg-sky-50/80 rounded-lg relative pt-9">
@@ -36,7 +35,7 @@ const DateSelector = ({ date, setDate }) => {
           <DayPicker
             captionLayout="dropdown-buttons"
             mode="single"
-            selected={date}
+            selected={typeof date === 'string' ? new Date(date) : date}
             onSelect={(newDate) => {
               setDate(newDate);
               setOpenDatePicker(false);
