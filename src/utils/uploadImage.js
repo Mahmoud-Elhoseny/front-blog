@@ -2,9 +2,7 @@ import axiosInstance from "./axiosInstance";
 
 const uploadImage = async (imageFile) => {
   // Only verify that it's some type of image file
-  if (!imageFile.type.startsWith('image/')) {
-    throw new Error('Please upload an image file');
-  }
+
 
   const formData = new FormData();
   formData.append('image', imageFile);
