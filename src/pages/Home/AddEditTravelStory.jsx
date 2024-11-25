@@ -18,7 +18,7 @@ const AddEditTravelStory = ({
   const [image, setImage] = useState(storyInfo?.image || null);
   const [story, setStory] = useState(storyInfo?.story || '');
   const [visitedDate, setVisitedDate] = useState(
-    storyInfo?.visitedDate.format('Do MMM YYYY') || null
+    storyInfo?.visitedDate || null
   );
   const [visitedLocation, setVisitedLocation] = useState(
     storyInfo?.visitedLocation || []
@@ -113,8 +113,8 @@ const AddEditTravelStory = ({
           image: '',
           visitedLocation,
           visitedDate: visitedDate
-            ? moment(visitedDate).valueOf()
-            : moment().valueOf(),
+            ? moment(visitedDate).format('Do MMM YYYY')
+            : moment().format('Do MMM YYYY'),
         }
       );
       if (response.data) {
