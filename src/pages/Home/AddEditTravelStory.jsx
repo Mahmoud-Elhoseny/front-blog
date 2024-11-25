@@ -113,7 +113,7 @@ const AddEditTravelStory = ({
           image: '',
           visitedLocation,
           visitedDate: visitedDate
-           ? moment(visitedDate).format('Do MMM YYYY')
+            ? moment(visitedDate).format('Do MMM YYYY')
             : moment().format('Do MMM YYYY'),
         }
       );
