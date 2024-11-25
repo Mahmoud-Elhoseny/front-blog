@@ -8,31 +8,19 @@ import {
   Route,
   Navigate,
 } from 'react-router-dom';
+import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = !!localStorage.getItem('token');
-  return isAuthenticated ? children : <Navigate to="/login" />;
-};
-
 const App = () => {
+  axios.defaults.baseURL = 'https://back-blog-2-gdeh.onrender.com';
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Root />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signUp" element={<SignUp />} />
-        {/* Add a catch-all route */}
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/" exact element={<Root />} />
+        <Route path="/dashboard" exact element={<Home />} />
+        <Route path="/login" exact element={<Login />} />
+        <Route path="/signUp" exact element={<SignUp />} />
       </Routes>
       <ToastContainer
         position="top-right"
