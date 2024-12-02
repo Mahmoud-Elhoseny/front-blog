@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  timeout: 15000,
+  timeout: 35000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -15,6 +15,11 @@ api.interceptors.response.use(
     if (error.code === 'ECONNABORTED') {
       return Promise.reject({
         message: 'Server is taking too long to respond. Please try again.',
+      });
+    }
+    if (error.code === 'ERR_NETWORK') {
+      return Promise.reject({
+        message: 'Network error. Please check your internet connection.',
       });
     }
     return Promise.reject(error);

@@ -36,7 +36,11 @@ const AddEditTravelStory = ({
         image: imageUrl || '',
         visitedLocation,
         visitedDate: visitedDate
-          ? moment(visitedDate).format('Do MMM YYYY')
+          ? (visitedDate instanceof Date)
+            ? moment(visitedDate).format('Do MMM YYYY')
+            : typeof visitedDate === 'string'
+              ? visitedDate
+              : moment(visitedDate).format('Do MMM YYYY')
           : moment().format('Do MMM YYYY'),
       });
 
@@ -70,7 +74,11 @@ const AddEditTravelStory = ({
           image: imageUrl,
           visitedLocation,
           visitedDate: visitedDate
-            ? moment(visitedDate).format('Do MMM YYYY')
+            ? (visitedDate instanceof Date)
+              ? moment(visitedDate).format('Do MMM YYYY')
+              : typeof visitedDate === 'string'
+                ? visitedDate
+                : moment(visitedDate).format('Do MMM YYYY')
             : moment().format('Do MMM YYYY'),
         }
       );
@@ -81,7 +89,7 @@ const AddEditTravelStory = ({
       }
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.error || 'Something went wrong');
+      toast.error(error?.response?.error || 'Something went wrong');
     }
   };
 

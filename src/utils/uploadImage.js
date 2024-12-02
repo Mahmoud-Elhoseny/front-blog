@@ -30,10 +30,9 @@ const uploadImage = async (imageFile) => {
           'Accept': 'application/json',
         },
         // Add timeout and show upload progress
-        timeout: 30000,
+        timeout: 35000,
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          console.log('Upload progress:', percentCompleted);
         },
       }
     );

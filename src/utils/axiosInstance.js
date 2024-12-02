@@ -1,12 +1,13 @@
 import axios from 'axios';
+// baseURL: 'http://localhost:3000',
 
 const axiosInstance = axios.create({
   baseURL: 'https://back-blog-2-gdeh.onrender.com',
-  timeout: 5000,
+  timeout: 35000,
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true,
+  withCredentials: true, // تضمين بيانات الاعتماد
 });
 
 axiosInstance.interceptors.request.use(

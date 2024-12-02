@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   axios.defaults.baseURL = 'https://back-blog-2-gdeh.onrender.com';
+  // axios.defaults.baseURL = 'http://localhost:3000';
   return (
     <Router>
       <Routes>
